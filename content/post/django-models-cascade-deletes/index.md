@@ -8,7 +8,7 @@ slug: cascading-deletes-in-django
 tags:
  - Django
 categories:
- - 技术
+ - Python
 ---
 在django中的一对多关系里，默认存在着级联删除的属性。
 ### 处理方法

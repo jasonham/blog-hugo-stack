@@ -8,7 +8,7 @@ tags:
  - Django
  - MySQL
 categories:
- - 技术
+ - Python
 ---
 ## 问题简述
 默认情况下，对于UTF-8数据库，MySQL将使用 utf8_general_ci来做为数据库的collation。这导致所有字符串不会区分大小写。即，"Abcd"与"abcD"在数据库级别被视为相等。如果对字段有唯一约束，则尝试将"aa"和 "AA"插入同一列将是非法的。如果要对特定的列或表进行区分大小写的比较，需要更改该列或表以使用 utf8_bin的collation。Django没有提供在模型定义上进行设置的方法。
