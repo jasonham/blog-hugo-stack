@@ -1,4 +1,5 @@
 ---
+author: 韩毅
 title: 如何在Django中改变collation
 description: 在Django（mysql）中把表格的Collate改成utf8mb4_bin
 date: 2023-03-18 20:33:31

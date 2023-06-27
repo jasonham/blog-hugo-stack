@@ -1,14 +1,13 @@
 ---
-title: About
-description: Hugo, the world's fastest framework for building websites
-date: '2019-02-28'
+title: 关于我
+description: 12年工作经验，六年Python，熟练掌握Django，DRF。
+date: '2020-11-07'
 aliases:
   - about-us
-  - about-hugo
+  - about
   - contact
-license: CC BY-NC-ND
-lastmod: '2020-10-09'
-slug: my-first-post
+lastmod: '2023-06-27T21:23:40+08:00'
+slug: about-me
 menu:
     main: 
         weight: -90
@@ -16,20 +15,29 @@ menu:
             icon: user
 ---
 
-Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
+# 概况
+12年工作经验，六年Python，熟练掌握Django，DRF。  
+热爱新事务，喜欢有挑战的工作。  
+个人注重团队的编码规范，与关键代码注释的必要性。  
+悉类Unix系统的日常操作。并用Python的subprocess库进行一些系统维护。  
+英文水平可以正常学习、阅读文档，可进行一般日常交流，  
+有国外团队合作经验 
+# 技术栈
+点亮科技树:
 
-Hugo makes use of a variety of open source projects including:
+* PYTHON
+* DJANGO
+* MYSQL
+* REDIS
+* DRF
 
-* https://github.com/yuin/goldmark
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
+# 主要工作
+* 小组内部人员的晨会主持及工作进度评估，及代码的review
+* 系统架构搭建，业务架构设计，全程参与项目开发
+* 攻关技术难点，保障节点交付
+* 主导了恒大培冠的一体化经营管理体系
+* 主导了伊顿教育集团的收退费系统开发
+* 主导了高并发的上海世界外国语学校的招生报名系统
 
-Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
 
-Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
 
-Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).

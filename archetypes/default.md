@@ -2,7 +2,7 @@
 title: 
 description: 
 date: {{ .Date }}
-updated: {{ .Date }}
+lastmod: {{ .Date }}
 slug: {{.Name}}
 
 tags:
