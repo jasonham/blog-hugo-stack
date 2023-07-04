@@ -86,7 +86,7 @@ const a, b = 3, 4
 
 ### 枚举类型
 
-普通枚举
+#### 普通枚举
 
 ``` go
 const (
@@ -97,7 +97,7 @@ const (
 )
 ```
 
-自增值枚举
+#### 自增值枚举
 
 ``` go
 const (
@@ -126,7 +126,7 @@ const (
 
 ### if
 
-普通写法
+#### 普通写法
 
 ``` go
 func bounded(v int) int {
@@ -141,7 +141,7 @@ func bounded(v int) int {
 
 ```
 
-循环写法
+#### 循环写法
 
 ``` go
 const filename = "abc.txt"
@@ -196,3 +196,241 @@ func grade(score int) string {
     return g
 }
 ```
+
+## 循环
+
+### for循环
+
+#### 简单循环
+
+``` go
+ sum := 0
+ for i := 1; i <= 100; i++ {
+    sum += i
+ }
+```
+
+#### 无起始条件
+
+``` go
+func convertToBin(n int) string {
+    result := ""
+    for ; n > 0; n /= 2 {
+        lsb := n % 2
+        result = strconv.Itoa(lsb) + result
+        }
+        return result
+}
+```
+
+#### 无起始条件，无递增条件，只有结束条件
+
+``` go
+func printFile(filename string) {
+    file, err := os.Open(filename)
+    if err != nil {
+        panic(err)
+        }
+        printFileContents(file)
+}
+
+func printFileContents(reader io.Reader) {
+    scanner := bufio.NewScanner(reader)
+    for scanner.Scan() {
+        fmt.Println(scanner.Text())
+        }
+}
+```
+
+#### 无结束条件  
+
+死循环
+
+``` go
+func forever() {
+    for {
+        fmt.Println("abc")
+    }
+}
+```
+
+## 函数
+
+### func
+
+#### 匿名函数  
+
+func关键字后没有函数名
+
+``` go
+func(a int, b int) int {
+    return int(math.Pow(
+        float64(a), float64(b)))
+        }, 3, 4)
+```
+
+#### 可变参数列表  
+
+**...** 代表不定参数数量
+
+``` go
+func sum(numbers ...int) int {
+    s := 0
+    for i := range numbers {
+        s += numbers[i]
+        }
+        return s
+        }
+```  
+
+## 指针
+
+* \* 代表指针
+* &代表引用
+  
+## 数组
+
+### 定义数组
+
+数组是值类型
+
+``` go
+func main() {
+    var arr1 [5]int
+    arr2 := [3]int{1, 3, 5}
+    arr3 := [...]int{2, 4, 6, 8, 10}  // 不标明个数，但不是切片
+    var grid [4][5]int  
+}
+```
+
+### 循环数组
+
+``` go
+for i, v := range arr {
+    fmt.Println(i, v)
+    }
+```
+
+## 切片（slice）
+
+不是值类型，是数组的一个view  
+
+* slices可以向后扩展，不可以向前扩展
+* 注意区分len，cap的概念
+
+### 定义切片
+
+``` go
+arr := [...]int{0, 1, 2, 3, 4, 5, 6, 7}  // 数组
+
+fmt.Println("arr[2:6] =", arr[2:6])  // 切片
+```
+
+### slice的向后扩展
+
+``` go
+s1 = arr[2:6]
+s2 = s1[3:5] // [s1[3], s1[4]] 对slice做了向后扩展
+```
+
+### slice的添加
+
+* 添加元素的时候不用考虑原caps，超过的时候会自动分配新的数组
+* 必须有接收对象
+
+``` go
+s3 := append(s2, 10)
+s4 := append(s3, 11)
+s5 := append(s4, 12)
+```
+
+### 创建slice
+
+``` go
+var s []int // Zero value for slice is nil
+s1 := []int{2, 4, 6, 8}
+s2 := make([]int, 16)
+s3 := make([]int, 10, 32) // len 10 cap 32
+```
+
+### copy slice
+
+``` go
+copy(s2, s1)
+```
+
+### 删除 slice
+
+#### 删除中间的元素
+
+``` go
+s2 = append(s2[:3], s2[4:]...)
+```
+
+#### 删除头尾
+
+``` go
+fmt.Println("Popping from front")
+front := s2[0]
+s2 = s2[1:]
+
+fmt.Println("Popping from back")
+tail := s2[len(s2)-1]
+s2 = s2[:len(s2)-1]
+```
+
+## Map
+
+### 定义map
+
+``` go
+m := map[string]string{
+    "name":    "ccmouse",
+    "course":  "golang",
+    "site":    "imooc",
+    "quality": "notbad",
+    }
+
+m2 := make(map[string]int) // m2 == empty map
+var m3 map[string]int // m3 == nil
+
+```
+
+### 遍历map
+
+``` go
+ for k, v := range m {
+    fmt.Println(k, v)
+    }
+```
+
+### 获取value
+
+``` go
+courseName := m["course"]
+
+if causeName, ok := m["cause"]; ok {
+    fmt.Println(causeName)
+    } else {
+        fmt.Println("key 'cause' does not exist")
+        }
+```
+
+### 删除元素
+
+``` go
+delete(m, "name")
+```
+
+## 字符串
+
+中文转换
+
+``` go
+var ch = []rune(s)
+for i, chr := range []rune(s) {}
+```
+
+## 面向对象
+
+* 仅支持封装，不支持继承和多态
