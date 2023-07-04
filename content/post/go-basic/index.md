@@ -434,3 +434,81 @@ for i, chr := range []rune(s) {}
 ## 面向对象
 
 * 仅支持封装，不支持继承和多态
+* go语言没有class，只有struct
+* 不论地址还是结构本身，一律使用 ．来访问成员
+
+结构定义
+
+``` go
+type TreeNode struct {
+    Left, Right *TreeNode Value int
+}
+// 接收者方式
+func (node TreeNode) print () {
+    fmt. Print (node.Value)
+}
+// 使用指针作为方法接收者
+// 只有使用指针才可以改变结构内容
+func (node *TreeNode) setValue (value int ) {
+    node.Value = value
+}
+
+// 使用自定义工厂函数
+func createTreeNode (value int) *TreeNode {
+    return &TreeNode{Value: value}
+}
+root.Left.Right = createTreeNode(3)
+
+//  嵌套写法
+func (node *treeNode) traverse() {
+    if node == nil {
+        return
+        }
+        node.left.traverse()
+        node.print()
+        node.right.traverse()
+```
+
+## 封装
+
+* 名字一般使用CamelCase
+* 首字母大写：public
+* 首字母小写：private
+
+## 扩充（继承）
+
+### 组合
+
+``` go
+type myTreeNode struct {
+    node *tree.Node
+}
+
+func (myNode *myTreeNode) postOrder () {
+    if myNode == nil Il myNode. node == nil {
+        return
+        }
+    left := myTreeNode{myNode. node.Left} 
+    right := myTreeNode{myNode.node.Right}
+    left.postOrder ()
+    right.post0rder)
+    myNode.node.Print ()
+```
+
+### 别名
+
+``` go
+type Queue []int
+
+func (g *Queue) Push(v int) {
+    *q = append (*q, v)
+}
+func (q *Queue) Pop() int {
+    head := (*q)[0]
+    *q = (*q)[1:]
+    return head
+}
+func (q *Queue) IsEmpty() bool {
+    return len (*q) == 0
+}
+```
