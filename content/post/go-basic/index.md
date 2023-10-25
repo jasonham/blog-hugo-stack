@@ -512,3 +512,46 @@ func (q *Queue) IsEmpty() bool {
     return len (*q) == 0
 }
 ```
+
+## 接口
+
+### 定义
+
+``` go
+type Retriever interface{
+    Get(source string)string
+}
+func download (retriever Retriever) string {
+    return retriever.Get ("www.baidu.com")
+}
+```
+
+### 实现
+
+``` go
+type Retriever struct {
+	Contents string
+}
+
+func (r *Retriever) String() string {
+	return fmt.Sprintf(
+		"Retriever: {Contents=%s}", r.Contents)
+}
+
+func (r *Retriever) Post(url string,
+	form map[string]string) string {
+	r.Contents = form["contents"]
+	return "ok"
+}
+
+func (r *Retriever) Get(url string) string {
+	return r.Contents
+}
+
+```
+
+### 调用
+
+``` go
+fmt.Println(download(mock.Retriever{"this is fake baidu.com"}))
+```
