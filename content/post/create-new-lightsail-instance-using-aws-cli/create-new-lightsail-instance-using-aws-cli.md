@@ -21,33 +21,48 @@ aws lightsail get-blueprints
 aws lightsail get-bundles
 ```
 
-## 删除旧实例
+# 使用组合命令创建实例
 
 ```bash
-aws lightsail delete-instance --instance-name ubuntu
-```
+# 定义变量
+# 实例名称
+instanceName="ubuntu"
+# 选择需要的镜像ID
+blueprintId="ubuntu_22_04"
+# 选择需要的实例套餐ID
+bundleId="nano_3_0"
+# 选择需要的密钥对名称，需要提前创建到 aws 的密钥对管理中
+keyPairName="lightsail"
 
-## 创建实例，替换实例名
+# 删除实例
+aws lightsail delete-instance --instance-name "${instanceName}"
 
-```bash
+# 创建实例
 aws lightsail create-instances \
- --instance-names "ubuntu" \
+ --instance-names "${instanceName}" \
  --availability-zone ap-northeast-1a \
- --blueprint-id ubuntu_22_04 \
- --bundle-id nano_3_0 \
- --key-pair-name lightsail
-```
+ --blueprint-id "${blueprintId}" \
+ --bundle-id "${bundleId}" \
+ --key-pair-name "${keyPairName}"
 
-## 获取实例公共 IP
+# 等待实例创建并获取IP地址
+ipAddress=""
+while [ -z "$ipAddress" ]; do
+  echo "Waiting for instance to have a public IP address..."
+  sleep 5  # 等待5秒
+  ipAddress=$(aws lightsail get-instance --instance-name "${instanceName}" | jq -r .instance.publicIpAddress)
+done
 
-```bash
-aws lightsail get-instance --instance-name ubuntu | jq -r .instance.publicIpAddress
-```
+# 等待实例的SSH端口开放
+echo "Instance IP address: ${ipAddress}"
+while ! nc -zv "${ipAddress}" 22 2>&1 | grep -q succeeded; do
+  echo "Waiting for SSH port to be available..."
+  sleep 5  # 等待5秒
+done
 
-## 连接到实例
-
-```bash
-ssh -i ~/.ssh/lightsail.pem ubuntu@13.231.100.164
+# 连接实例
+echo "Connecting to instance..."
+ssh -i ~/.ssh/"${keyPairName}".pem ubuntu@"${ipAddress}"
 ```
 
 ## 安装 outline
