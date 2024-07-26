@@ -10,7 +10,6 @@ tags:
   - lightsail
 categories:
   - 运维
-draft: true
 ---
 
 # 用 aws cli 新建 lightsail 实例
