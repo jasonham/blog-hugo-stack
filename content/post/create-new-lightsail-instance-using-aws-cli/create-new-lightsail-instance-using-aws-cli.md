@@ -74,18 +74,21 @@ sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-
 ## 根据 outline 提示开放端口
 
 ```bash
-tcpPort=""
-udpPort=""
+
+# 填入开放端口
+
+managementPort=""
+accessKeyPort=""
 
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort="${tcpPort}",toPort="${tcpPort}",protocol=TCP \
+ --port-info fromPort="${managementPort}",toPort="${managementPort}",protocol=TCP \
 && \
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort="${udpPort}",toPort="${udpPort}",protocol=TCP \
+ --port-info fromPort="${accessKeyPort}",toPort="${accessKeyPort}",protocol=TCP \
 && \
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort="${udpPort}",toPort="${udpPort}",protocol=UDP
+ --port-info fromPort="${accessKeyPort}",toPort="${accessKeyPort}",protocol=UDP
 ```
