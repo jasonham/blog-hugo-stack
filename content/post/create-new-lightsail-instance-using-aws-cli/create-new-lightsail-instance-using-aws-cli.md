@@ -49,7 +49,7 @@ aws lightsail create-instances \
 ipAddress=""
 while [ -z "$ipAddress" ]; do
   echo "Waiting for instance to have a public IP address..."
-  sleep 5  # 等待5秒
+  sleep 1  # 等待1秒
   ipAddress=$(aws lightsail get-instance --instance-name "${instanceName}" | jq -r .instance.publicIpAddress)
 done
 
@@ -57,7 +57,7 @@ done
 echo "Instance IP address: ${ipAddress}"
 while ! nc -zv "${ipAddress}" 22 2>&1 | grep -q succeeded; do
   echo "Waiting for SSH port to be available..."
-  sleep 5  # 等待5秒
+  sleep 1  # 等待1秒
 done
 
 # 连接实例
@@ -74,15 +74,18 @@ sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-
 ## 根据 outline 提示开放端口
 
 ```bash
+tcpPort=""
+udpPort=""
+
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort=19688,toPort=19688,protocol=TCP \
+ --port-info fromPort="${tcpPort}",toPort="${tcpPort}",protocol=TCP \
 && \
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort=31305,toPort=31305,protocol=TCP \
+ --port-info fromPort="${udpPort}",toPort="${udpPort}",protocol=TCP \
 && \
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
- --port-info fromPort=31305,toPort=31305,protocol=UDP
+ --port-info fromPort="${udpPort}",toPort="${udpPort}",protocol=UDP
 ```
