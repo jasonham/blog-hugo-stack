@@ -33,7 +33,7 @@ cProfile 是 Python 官方提供的一个性能分析工具，用于对 Python �
 > - cProfile 默认只能用于单线程，如果需要多线程，需要使用 multiprocessing 模块。
 > - 它不统计“每一行代码”，而是“每个函数”。
 
-cProfile 的使用方法如下：
+### 使用方法：
 
 cProfile 是 python 标准库的一部分，不需要安装。你可以直接引用，然后 run()方法来运行你的代码。
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
 ```
 
-示例输出片段
+### 示例输出片段
 
 ```console
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
@@ -75,7 +75,7 @@ ncalls 表示函数被调用的次数，tottime 表示函数内代码执行的�
 
 > 注意：它需要你手动标记要分析的函数（用装饰器 @profile），不能全局分析。
 
-### 1\. 安装
+### 安装
 
 首先，你需要使用 `pip` 安装 `line_profiler`：
 
@@ -85,7 +85,7 @@ pip install line_profiler
 
 ---
 
-### 2\. 标记要分析的函数
+### 标记要分析的函数
 
 你需要使用 `@profile` 装饰器来标记你想要分析的函数。这个装饰器来自 `kernprof.py` 脚本，因此即使你没有直接导入它，只要你使用正确的运行方式，它也能正常工作。
 
@@ -122,7 +122,7 @@ if __name__ == "__main__":
 
 ---
 
-### 3\. 运行分析器
+### 运行分析器
 
 要运行分析，你需要使用 `kernprof.py` 脚本。它会生成一个以 `.lprof` 为后缀的文件，其中包含了分析结果。
 
@@ -138,26 +138,26 @@ kernprof -v -l test_script.py
 ```text
 开始执行...
 执行完毕。
-Wrote profile results to test_script.py.lprof
+Wrote profile results to 'script.py.lprof'
 Timer unit: 1e-06 s
 
-Total time: 0.10651 s
-File: test_script.py
-Function: slow_function_a at line 5
+Total time: 0.130727 s
+File: script.py
+Function: slow_function_a at line 3
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-     5                                           @profile
-     6     def slow_function_a():
-     7     """一个模拟的慢函数 A"""
-     8       total = 0
-     9       for i in range(1000):
-    10         total += i
-    11         time.sleep(0.0001)
-    12     return total
+     3                                           @profile
+     4                                           def slow_function_a():
+     5                                               """一个模拟的慢函数 A"""
+     6         1          2.0      2.0      0.0      total = 0
+     7      1001        388.0      0.4      0.3      for i in range(1000):
+     8      1000        316.0      0.3      0.2          total += i
+     9      1000     130018.0    130.0     99.5          time.sleep(0.0001)  # 模拟一些耗时的操作
+    10         1          3.0      3.0      0.0      return total
 ```
 
-### 4\. 解读分析结果
+### 解读分析结果
 
 分析结果表格提供了非常详细的信息：
 
@@ -171,7 +171,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 ---
 
-### 5\. 查看结果文件
+### 查看结果文件
 
 如果你没有使用 `-v` 参数，`kernprof.py` 只会生成 `.lprof` 文件。你可以使用 `line_profiler` 提供的 `lpstat` 脚本来查看结果。
 
@@ -191,11 +191,13 @@ python -m line_profiler test_script.py.lprof
 
 这种逐行分析的方法非常适合诊断那些由特定几行代码导致的性能问题。
 
-## `memory_profiler` 是一个用于分析 Python 代码内存使用情况的工具，它可以精确到每行代码。这对于找出内存泄漏或内存使用过高的代码非常有用。
+## `memory_profiler`
+
+是一个用于分析 Python 代码内存使用情况的工具，它可以精确到每行代码。这对于找出内存泄漏或内存使用过高的代码非常有用。
 
 以下是 `memory_profiler` 的详细使用方法：
 
-### 1\. 安装
+### 安装
 
 首先，你需要使用 pip 安装 `memory_profiler` 和它的依赖 `psutil`：
 
@@ -207,7 +209,7 @@ pip install memory-profiler
 
 ---
 
-### 2\. 标记要分析的函数
+### 标记要分析的函数
 
 要分析代码，你需要使用 `@profile` 装饰器来标记你想监控的函数。这个装饰器由 `memory_profiler` 模块提供，所以你需要在脚本中导入它。
 
@@ -239,7 +241,7 @@ if __name__ == '__main__':
 
 ---
 
-### 3\. 运行分析器
+### 运行分析器
 
 有两种主要的方式来运行 `memory_profiler`：
 
@@ -281,14 +283,17 @@ mprof run my_script.py
 
 ```bash
 # 绘制内存使用图表
+# 需要安装 matplotlib
+# pip install matplotlib
 mprof plot
 ```
 
-这会生成一个 `.png` 格式的图表，清晰地展示程序运行时的内存变化。
+这会生成一个 `.png` 格式的图表，清晰地展示程序运行时的内存变化。  
+![生成的图片](Figure_1.png)
 
 ---
 
-### 4\. 解读分析结果
+### 解读分析结果
 
 分析结果表格提供了关键信息：
 
@@ -313,3 +318,77 @@ mprof plot
 2.  **标记**：在你想分析的函数前加上 `@profile` 装饰器。
 3.  **运行**：使用 `python -m memory_profiler your_script.py` 或 `mprof run your_script.py`。
 4.  **分析**：查看输出或生成的图表，重点关注 **Increment** 列来找出内存消耗大户。
+
+---
+
+## 汇总
+
+### 三者如何配合使用？
+
+| 场景                         | 推荐工具          | 作用             |
+| ---------------------------- | ----------------- | ---------------- |
+| “程序整体很慢，不知道哪慢”   | `cProfile`        | 找到最耗时的函数 |
+| “某个函数内部很慢，不知哪行” | `line_profiler`   | 定位到具体代码行 |
+| “程序跑着跑着内存暴涨”       | `memory_profiler` | 找出内存分配大户 |
+| “怀疑有内存泄漏”             | `tracemalloc`     | 追踪对象分配源头 |
+
+---
+
+### 实战案例：优化一个慢函数
+
+假设你有如下函数：
+
+```python
+@profile
+def process_data():
+    data = []
+    for i in range(100000):
+        data.append(str(i) * 100)  # 构造大字符串
+    result = ''.join(data)
+    return len(result)
+```
+
+#### 步骤 1：
+
+cProfile 发现 `process_data` 是瓶颈
+
+#### 步骤 2：
+
+line_profiler 发现 `str(i)*100` 和 `append` 很耗时
+
+优化：改用生成器 + join，避免中间列表
+
+```python
+def process_data_optimized():
+    result = ''.join(str(i) * 100 for i in range(100000))
+    return len(result)
+```
+
+#### 步骤 3：
+
+memory_profiler 发现原函数占用 121MB 内存，优化后只占 71MB
+
+成功降低内存 + 提升速度！
+
+---
+
+### 小贴士
+
+- 生产环境慎用 `line_profiler` 和 `memory_profiler`，性能开销较大
+- 开发/压测环境使用最合适
+- 结合日志、监控、APM（如 Datadog、SkyWalking）做线上性能分析
+- **优化前先测量，优化后对比**，避免“负优化”
+
+---
+
+### 总结
+
+| 工具              | 粒度   | 用途                   | 是否标准库 | 开销 |
+| ----------------- | ------ | ---------------------- | ---------- | ---- |
+| `cProfile`        | 函数级 | 找最慢的函数           | ✅ 是      | 低   |
+| `line_profiler`   | 行级   | 找函数内最慢的代码行   | ❌ 否      | 高   |
+| `memory_profiler` | 行级   | 找内存占用最高的代码行 | ❌ 否      | 中高 |
+
+掌握这三大工具，你就能像“外科医生”一样，精准定位 Python 程序的性能病灶，做到**有的放矢、高效优化**。
+
+---
