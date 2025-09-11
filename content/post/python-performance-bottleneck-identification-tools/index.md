@@ -1,8 +1,8 @@
 ---
 title: Python性能瓶颈定位
 description: 介绍 python 性能瓶颈定位中常用的三个核心工具：cProfile、line_profiler、memory_profiler。
-date: 2025-09-11T23:21:41+08:00
-lastmod: 2025-09-11T23:21:41+08:00
+date: 2023-06-22T23:21:41+08:00
+lastmod: 2023-06-22T23:21:41+08:00
 slug: python-performance-bottleneck-identification-tools
 
 tags:
