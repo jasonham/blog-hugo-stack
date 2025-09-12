@@ -6,9 +6,10 @@ lastmod: 2023-12-17T00:22:44+08:00
 slug: how-to-know-user-experience
 
 tags:
-  - Django
+  - 用户体验
+  - 优化
 categories:
-  - Python
+  - UX
 ---
 
 ## 为什么需要埋点、日志、A/B 测试？
