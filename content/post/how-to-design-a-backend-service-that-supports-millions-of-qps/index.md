@@ -6,10 +6,11 @@ lastmod: 2024-01-03T15:44:29+08:00
 slug: how-to-design-a-backend-service-that-supports-millions-of-qps
 
 tags:
-  - python
-  - golang
+  - FastAPI
+  - Gin
 categories:
   - Python
+  - Golang
 ---
 
 ## 目标：支持百万 QPS 的后端服务
