@@ -1,8 +1,8 @@
 ---
 title: SQL优化
 description: 索引设计（联合索引、覆盖索引）、执行计划分析、慢查询优化
-date: 2024-09-1T01:02:34+08:00
-lastmod: 2024-09-1T01:02:34+08:00
+date: 2024-09-01T01:02:34+08:00
+lastmod: 2024-09-01T01:02:34+08:00
 slug: SQL-Optimization
 
 tags:
