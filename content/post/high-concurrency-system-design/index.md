@@ -6,9 +6,9 @@ lastmod: 2024-02-03T16:59:02+08:00
 slug: high-concurrency-system-design
 
 tags:
-  - 系统设计
+  - 系统架构
 categories:
-  - 系统设计
+  - 系统架构
 ---
 
 ## 限流算法（Rate Limiting）

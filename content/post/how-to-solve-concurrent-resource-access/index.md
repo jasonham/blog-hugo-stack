@@ -8,7 +8,7 @@ slug: how-to-solve-concurrent-resource-access
 tags:
   - 分布式
 categories:
-  - 系统设计
+  - 系统架构
 ---
 
 ## 为什么需要分布式锁？
