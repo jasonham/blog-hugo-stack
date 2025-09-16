@@ -6,10 +6,11 @@ lastmod: 2024-09-16T16:02:16+08:00
 slug: database-sharding
 
 tags:
-  - Mysql
+  - sql
+  - mysql
 categories:
-  - Database
----
+  - 系统优化
+  - database
 
 ## 为什么需要分库分表？
 
