@@ -7,8 +7,10 @@ slug: SQL-Optimization
 
 tags:
   - sql
+  - mysql
 categories:
   - 系统优化
+  - database
 ---
 
 ## 索引设计
