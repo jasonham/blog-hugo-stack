@@ -33,14 +33,18 @@ blueprintId="ubuntu_22_04"
 bundleId="nano_3_0"
 # 选择需要的密钥对名称，需要提前创建到 aws 的密钥对管理中
 keyPairName="lightsail"
+region="ap-northeast-1"
+availabilityZone="ap-northeast-1a"
+
 
 # 删除实例
-aws lightsail delete-instance --instance-name "${instanceName}"
+aws lightsail delete-instance --region "${region}" --instance-name "${instanceName}"
 
 # 创建实例
 aws lightsail create-instances \
  --instance-names "${instanceName}" \
- --availability-zone ap-northeast-1a \
+ --region "${region}" \
+ --availability-zone "${availabilityZone}" \
  --blueprint-id "${blueprintId}" \
  --bundle-id "${bundleId}" \
  --key-pair-name "${keyPairName}" \
@@ -104,7 +108,7 @@ cat /var/log/cloud-init-output.log
 ## 删除实例
 
 ```bash
-aws lightsail delete-instance --instance-name "${instanceName}"
+aws lightsail delete-instance --region "${region}" --instance-name "${instanceName}"
 ```
 
 ## 安装 outline
@@ -133,4 +137,10 @@ aws lightsail open-instance-public-ports \
 aws lightsail open-instance-public-ports \
  --instance-name ubuntu \
  --port-info fromPort="${accessKeyPort}",toPort="${accessKeyPort}",protocol=UDP
+```
+
+## 切换区域
+
+```bash
+aws configure set region ap-northeast-1
 ```
