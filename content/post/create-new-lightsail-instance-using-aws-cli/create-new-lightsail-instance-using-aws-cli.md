@@ -111,6 +111,8 @@ cat /var/log/cloud-init-output.log
 aws lightsail delete-instance --region "${region}" --instance-name "${instanceName}"
 ```
 
+# 其他命令
+
 ## 安装 outline
 
 ```bash
@@ -143,4 +145,16 @@ aws lightsail open-instance-public-ports \
 
 ```bash
 aws configure set region ap-northeast-1
+# 韩国
+region="ap-northeast-2"
+availabilityZone="ap-northeast-2a"
+# 新加坡
+region="ap-southeast-1"
+availabilityZone="ap-southeast-1a"
+# 东京
+region="ap-northeast-1"
+availabilityZone="ap-northeast-1a"
+# 雅加达
+region="ap-southeast-3"
+availabilityZone="ap-southeast-3a"
 ```
