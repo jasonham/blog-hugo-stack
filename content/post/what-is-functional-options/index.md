@@ -1,6 +1,6 @@
 ---
 title: Golang 中的 Functional Options(函数式选项)是什么？
-description: Golang 基本语法的记录
+description: 详细介绍了 Go 语言中的 Functional Options（函数式选项）设计模式。主要内容包括：核心概念与痛点、基础实现方式、适用场景分析、进阶错误处理
 date: 2025-03-03T22:56:12+08:00
 lastmod: 2025-03-03T22:56:12+08:00
 slug: go-basic
