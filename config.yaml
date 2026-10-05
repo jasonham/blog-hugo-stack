@@ -1,5 +1,5 @@
 baseurl: https://blog.hanyi.online/
-locale: zh-cn
+languageCode: zh-cn
 theme: hugo-theme-stack
 pagination:
   pagerSize: 10
