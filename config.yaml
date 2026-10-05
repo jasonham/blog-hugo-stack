@@ -1,5 +1,5 @@
 baseurl: https://blog.hanyi.online/
-languageCode: zh-cn
+locale: zh-cn
 theme: hugo-theme-stack
 paginate: 10
 title: 宁静致远
@@ -220,7 +220,7 @@ markup:
   goldmark:
     renderer:
       ## Set to true if you have HTML content inside Markdown
-      unsafe: false
+      unsafe: true
   tableOfContents:
     endLevel: 4
     ordered: true
