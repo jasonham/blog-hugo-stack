@@ -1,4 +1,3 @@
-{{- $ThemeVersion := "3.16.0" -}}
 <footer class="site-footer">
     <section class="copyright">
         &copy; 
@@ -13,14 +12,4 @@
             {{ . | safeHTML }} <br/>
         {{ end }}
     </section>
-    <div class="powerby" style="display: inline-flex; align-items: center; gap: 4px; vertical-align: middle;">
-    本网站由
-    <a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank" rel="noopener" style="display: inline-flex; align-items: center;">
-        {{- $logo := resources.Get "img/又拍云_logo5.png" -}}
-        {{- if $logo -}}
-            <img src="{{ $logo.RelPermalink }}" alt="又拍云" style="height: 18px; width: auto; vertical-align: middle;">
-        {{- end -}}
-    </a>
-    提供 cdn 加速/云存储服务
-</div>
 </footer>
