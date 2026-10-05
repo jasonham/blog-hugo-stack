@@ -1,0 +1,10 @@
+{
+    "name": "blog-hugo-stack",
+    "compatibility_date": "2026-10-01",
+    "assets": {
+        "directory": "public"
+    },
+    "observability": {
+        "enabled": true
+    }
+}
